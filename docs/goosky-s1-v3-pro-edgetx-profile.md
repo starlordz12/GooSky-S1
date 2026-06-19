@@ -61,11 +61,14 @@ Human-readable description of the EdgeTX model in
 
 ## Curves
 
-- `Thr Easy`, `Thr Mild`, `Thr Wild` — head-speed curves (CH3) — **values [TBD]**
-- `Pit Easy`, `Pit Mild`, `Pit Wild` — collective pitch curves (CH6) — **values [TBD]**
+- `Th Easy/Mild/Wild` — head-speed curves (CH3): Mild **60%**, Wild **70%**
+  **[VERIFIED]**; Easy/Normal % **[TBD]**.
+- `Pi Easy/Mild/Wild` — collective pitch curves (CH6): official degrees
+  **[VERIFIED]** (Easy +11.5…-2.4; Mild/Wild ±11.5), shown as EdgeTX % assuming
+  app pitch range ±11.5°.
 
-Placeholder numbers are listed in [`flight-modes.md`](./flight-modes.md). They
-are conservative examples, **not** verified GooSky settings.
+Exact numbers are in [`flight-modes.md`](./flight-modes.md), sourced from the
+official GOOSKY S1 manual p.21.
 
 ## Logical switches & special functions
 
@@ -97,12 +100,19 @@ hard-coded** — all come from the live link. See
 > (land at a measured voltage, then set the alarm a margin below that). Do **not**
 > fly to an invented timer value. See [`first-flight-guide.md`](./first-flight-guide.md).
 
-## What you must set before flying (TBD checklist)
+## Verified vs. still-to-set
 
+**Verified from the official manual (p.21/p.27)** — already in the model:
+- Throttle curves: **Mild/IDLE1 = 60%**, **Wild/IDLE2 = 70%** (flat).
+- Pitch (degrees): **Easy +11.5…-2.4**, **Mild/Wild ±11.5** (in EdgeTX % assuming
+  app range ±11.5°).
+- Stability **Pose ↔ Manual** on CH5; flight modes **General/IDLE1/IDLE2**.
+
+**Still set/verify before flying:**
 1. CH2 / CH3 (and others) **reverse** directions — bench verify. **[TBD]**
-2. **CH5** value for Self-level vs 3D. **[TBD]**
-3. **Throttle curves** (head-speed) per mode — from GOOSKY app. **[TBD]**
-4. **Pitch curves / range (±°)** — from GOOSKY app + pitch gauge. **[TBD]**
-5. **Failsafe** = motor-off, method confirmed from manual. **[TBD]**
-6. **Timer T1** alarm from your measured safe pack time. **[TBD]**
-7. **ELRS** packet rate / Telem ratio / TX power for your area. **[TBD]**
+2. **CH5** endpoint value for Pose vs Manual so the GTS reads each. **[TBD]**
+3. **Easy/Normal governor %** (scan-unreadable) + confirm app **pitch range ±°**
+   with a pitch gauge. **[TBD]**
+4. **Failsafe** = motor-off, ELRS method confirmed + bench-tested. **[TBD]**
+5. **Timer T1** alarm from your measured safe pack time. **[TBD]**
+6. **ELRS** packet rate / Telem ratio / TX power for your area. **[TBD]**

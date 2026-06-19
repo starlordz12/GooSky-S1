@@ -46,6 +46,12 @@ full-res channels — **not enough**.
 **Alternative — button/3×power-cycle bind** if your RX has no preset phrase: put
 the RX in bind mode (per its manual), then TX ELRS Lua → **[Bind]**. **[VERIFIED]**
 
+> **GTS side (for reference):** the official manual binds the *stock* radios to
+> the GTS directly (GOOSKY T8: power heli on, **press BIND 3×**, solid-blue FC LED
+> = bound; Futaba: **S-FHSS**, long-press BIND). For **this ELRS build you bind on
+> the ELRS side** (above); the GTS just needs valid **SBUS** on its S-BUS input
+> (manual p.18). **[VERIFIED — manual p.21]**
+
 ## 4. Model Match (recommended)  **[VERIFIED]** (C4, C6)
 
 Enable **SYS → ExpressLRS → Model Match → ON** so the RX only links to *this*

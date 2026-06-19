@@ -12,7 +12,7 @@
 |--------|--------------------|-----------|
 | **SF** (2-pos) | **THROTTLE HOLD** (motor cut / safety) | ↑ = HOLD (motor off) · ↓ = LIVE |
 | **SA** (3-pos) | **FLIGHT MODE** → Easy / Mild / Wild | ↑ Easy · — Mild · ↓ Wild |
-| **SB** (3-pos) | **STABILITY (CH5)** Self-level ↔ 3D | ↑ Self-level · — (mid*) · ↓ 3D |
+| **SB** (3-pos) | **STABILITY (CH5)** Pose ↔ Manual [VERIFIED] | ↑ Pose (self-level) · — (mid*) · ↓ Manual (3D) |
 | **SH** (momentary) | **RESCUE / panic** (if supported) | press = rescue — **TBD** |
 | SC / SD | (reserved) | — |
 

@@ -27,7 +27,7 @@ The GTS is a **flybarless** controller: it mixes the swashplate internally.
 | **2** | Elevator stick (right-vertical) | **Elevator** (pitch cyclic) | **TBD** (often reversed on ELRS-SBUS) | hold / centre — TBD |
 | **3** | Throttle stick (left-vertical) **via throttle curve** | **Throttle → head speed** (governor in FC) | TBD – Verification Required | **MOTOR OFF / low** (see note) |
 | **4** | Rudder stick (left-horizontal) | **Rudder** (yaw / tail) | TBD – Verification Required | hold / centre — TBD |
-| **5** | **Flight-mode / stability switch** (see `switch-table.md`) | **Stability / POSE mode** (Self-level ↔ 3D) | n/a | safe state — TBD |
+| **5** | **Stability switch** (see `switch-table.md`) | **Pose mode (self-level) ↔ Manual mode (3D)** [VERIFIED p.27] | n/a | safe state — TBD |
 | **6** | **Collective pitch** (curve driven by flight mode + throttle stick) | **Collective pitch** | TBD – Verification Required | hold — TBD |
 | 7 | (reserved / unused) | — | — | — |
 | 8 | (reserved / unused) | — | — | — |
@@ -49,9 +49,10 @@ EdgeTX curves:
 - **Collective output (CH6):** a *pitch curve* → how much lift the blades make.
 
 Both curves are selected by the active **flight mode** (Easy/Mild/Wild). The
-**actual curve numbers are `TBD – Verification Required`** — see
-[`flight-modes.md`](./flight-modes.md). Conservative placeholders are used in the
-model file and are clearly marked; **do not fly them unverified.**
+**throttle and pitch numbers are now VERIFIED** from the official manual (p.21) —
+see [`flight-modes.md`](./flight-modes.md). The only remaining items are the
+**Normal-mode governor %** and confirming the **GTS app pitch-range (±°)** that
+the EdgeTX collective % maps to. **Still bench-verify before flight.**
 
 ## What is configured where
 

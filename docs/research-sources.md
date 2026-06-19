@@ -6,20 +6,23 @@ flight-critical file was generated, in accordance with the project rules.
 
 ## Research method & limitations (read this first)
 
-- Research was conducted from a sandboxed environment. **Direct page fetching
-  (WebFetch) of every target URL returned HTTP 403** (the environment's outbound
-  fetch path is blocked / user-agent filtered). As a result, the **official
-  GooSky PDF manuals could not be opened and read byte-for-byte.** Information
-  below was gathered through web-search result summaries of official,
-  retailer, and community pages.
-- Because the official manual could **not** be read directly, **every
-  flight-critical value in this repository that ultimately derives from the
-  official manual or the GOOSKY mobile app is marked
-  `TBD – Verification Required`** in the relevant document, and must be
-  confirmed by the user against their own unit before flight.
-- Nothing flight-critical in this package was invented. Where a community
-  source provided a commonly-used value (e.g., an example throttle curve), it
-  is labelled as **reported / example — verify**, not as fact.
+- **Phase 1 (web):** initial research ran in a sandboxed environment where
+  **direct page fetching (WebFetch) of every target URL returned HTTP 403**.
+  Information was gathered through web-search result summaries of official,
+  retailer, and community pages. At that point the official PDF could not be
+  read, so flight-critical values were marked `TBD – Verification Required`.
+- **Phase 2 (official manual):** the user then supplied the **official GOOSKY S1
+  Instruction Manual** (PDF) and a photo of the airframe. The PDF **was read
+  directly** — including reconstructing the flight-parameter table from text
+  coordinates — which **verified** the specs, throttle/pitch curves, flight
+  modes, stability modes, throttle-hold, binding, and connectors. The repository
+  was then updated to convert those items from `TBD` to `[VERIFIED]`.
+- **Still `TBD`:** items the manual does not cover for an **ELRS** build
+  specifically (ELRS packet-rate/power tuning, ELRS failsafe method, and the
+  Normal-mode governor % which did not render cleanly from the scan) remain
+  `TBD – Verification Required`.
+- **Nothing flight-critical was invented.** Verified values cite the official
+  manual (source **A0**); anything still unconfirmed is labelled, not guessed.
 
 ## Model-name note
 
@@ -38,6 +41,17 @@ of the user's airframe and flight controller is an open verification item**
 ---
 
 ## A. Official GooSky sources
+
+> **UPDATE — official manual obtained and read.** After the initial research
+> pass, the user supplied the **official _GOOSKY S1 Instruction Manual_** (PDF,
+> 31 pages) plus a photo of the actual purple airframe. The PDF was read directly
+> (text extracted, including the flight-parameter table reconstructed from text
+> coordinates). **This upgraded many `TBD` items to `[VERIFIED]`** — see source
+> **A0** and `research-summary.md`.
+
+| # | Source | URL / location | Used for |
+|---|--------|----------------|----------|
+| **A0** | **GOOSKY S1 Instruction Manual (official PDF, user-supplied)** | local upload `1b04f90c-c90f20.pdf` (ManualsLib-sourced GOOSKY S1 manual, ©2023 Guangdong Goosky) | **VERIFIED specs, flight-parameter table (throttle + pitch curves), flight modes (General/IDLE1/IDLE2), Pose/Manual stability, HOLD, binding, connectors (DSMX/S-BUS), T8 transmitter** |
 
 | # | Source | URL | Used for |
 |---|--------|-----|----------|

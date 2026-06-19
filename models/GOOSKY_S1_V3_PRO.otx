@@ -37,16 +37,16 @@ Channel order ..... AETR + CH5 stability + CH6 collective [REPORTED — verify]
 Channels
   CH1  Aileron .................................... [REPORTED]
   CH2  Elevator ........... reverse? ............... TBD - Verification Required
-  CH3  Throttle -> head speed (per-mode curves) .... curve values TBD
+  CH3  Throttle -> head speed ....................... Mild 60% / Wild 70% [VERIFIED p.21]
   CH4  Rudder ...................................... [REPORTED]
-  CH5  Stability/POSE (Self-level <-> 3D) .......... value TBD (on SB)
-  CH6  Collective pitch (per-mode curves) .......... curve values TBD
+  CH5  Stability: Pose(self-level) <-> Manual(3D) .. [VERIFIED p.27]; endpoint µs TBD
+  CH6  Collective pitch ............................ degrees [VERIFIED p.21]
 
-Flight modes (TX-side, switch SA)
-  EASY  self-level + low head-speed + gentle rates
-  MILD  self-level + higher head-speed
-  WILD  3D + full head-speed + full pitch
-  (The GTS itself exposes only Self-level/3D on CH5 — see /docs/flight-modes.md)
+Flight modes (SA) -> official GOOSKY modes (manual p.21)
+  EASY = General/Normal  pitch +11.5..-2.4deg, governor % TBD
+  MILD = IDLE 1          throttle flat 60%, pitch +/-11.5deg
+  WILD = IDLE 2          throttle flat 70%, pitch +/-11.5deg
+  Stability Pose/Manual on CH5 is independent — see /docs/flight-modes.md
 
 Safety
   Throttle Hold ..... SF (default HOLD), throttle-state warning at power-on

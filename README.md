@@ -6,14 +6,15 @@ ExpressLRS**. It aims for a Bind-N-Fly-like experience **while staying safe,
 documented, and verifiable**.
 
 > ## ⚠️ Read before you fly
-> The mandatory research phase ran in an environment where **the official GooSky
-> PDF manual could not be opened** (all direct page fetches were blocked).
-> Therefore **every flight-critical value here is either `[REPORTED]` (community-
-> corroborated, verify) or `TBD – Verification Required`.** **Nothing
-> flight-critical was invented.** This package is a **documented, importable
-> template** — you must resolve the `TBD` items from the official GooSky manual /
-> GOOSKY app and **bench-test with blades removed** before any flight.
-> Start with [`docs/safety-checklist.md`](docs/safety-checklist.md).
+> Flight-critical values here are now **verified against the official GOOSKY S1
+> Instruction Manual** (throttle/pitch curves p.21, Pose/Manual stability p.27,
+> binding, specs) — see [`docs/research-summary.md`](docs/research-summary.md).
+> A few **ELRS-specific** items remain `TBD – Verification Required` (ELRS
+> failsafe method/power tuning, the Normal-mode governor %, and confirming the
+> GTS app pitch-range). **Nothing flight-critical was invented.** This is still a
+> **template** — resolve the remaining `TBD`s, confirm values in the GOOSKY app,
+> and **bench-test with blades removed** before any flight. Start with
+> [`docs/safety-checklist.md`](docs/safety-checklist.md).
 
 ## What's inside
 
@@ -50,10 +51,11 @@ documented, and verifiable**.
 EdgeTX sends **8 channels at full resolution (333 Hz)** over internal ELRS to the
 heli's receiver, which outputs **SBUS** to the **GTS** controller. Channel order
 is **AETR + CH5 (stability) + CH6 (collective)**. **No swash mixing is done in
-the radio** — the flybarless GTS handles that. **Easy / Mild / Wild** are a
-**transmitter-side** beginner-progression layer (CH5 state + head-speed curve +
-rate limits); the GTS itself only exposes Self-level/3D on CH5. **Throttle Hold
-(SF)** is the master motor cut and **defaults to HOLD** with a power-on warning.
+the radio** — the flybarless GTS handles that. **Easy / Mild / Wild** map 1:1 onto
+the manual's official **General / IDLE 1 / IDLE 2** modes (verified throttle &
+pitch curves); the separate **CH5** stability switch picks **Pose (self-level)**
+or **Manual (3D)**. **Throttle Hold (SF)** is the master motor cut and
+**defaults to HOLD** with a power-on warning.
 A **read-only Lua tool** shows mode, timer, throttle-hold, telemetry, a checklist
 and switch map — it **never arms the heli or changes any setting**.
 
@@ -71,17 +73,21 @@ and switch map — it **never arms the heli or changes any setting**.
 5. **Bench-test with blades removed** (directions, CH5, failsafe = motor-off).
 6. **Easy mode, low hovers** first — progress slowly.
 
-## Open verification items (must resolve before flying)
+## Status of key items
 
-1. Exact airframe/FC revision ("S1 V3 Pro" vs S1 V2 / New Edition).
-2. Channel **reverse** directions (esp. CH2/CH3).
-3. CH5 **Self-level / 3D** values (and whether a mid band exists).
-4. **Rescue** function existence/behaviour.
-5. Official **throttle curve + governor / head-speed RPM**.
-6. Official **collective pitch curve / range (±°)**.
-7. Official **failsafe** configuration (target: motor-off).
-8. **Timer** alarm from your metered safe pack time.
-9. Final **ELRS** packet rate / Telem ratio / TX power for your area.
+**Verified from the official manual:** specs · flight modes (General/IDLE1/IDLE2)
+· **pitch curves** · **IDLE throttle %** (60/70) · **Pose/Manual** stability ·
+binding.
+
+**Still resolve before flying (`TBD`):**
+1. Exact airframe/FC revision ("S1 V3 Pro" naming vs the manual's "S1").
+2. Channel **reverse** directions (esp. CH2/CH3) — bench check.
+3. CH5 endpoint values for **Pose vs Manual**.
+4. **Rescue / bail-out** function existence/behaviour.
+5. **Normal-mode governor %** + confirm GTS app **pitch-range (±°)** with a gauge.
+6. **ELRS failsafe** method (target: motor-off) + bench-test.
+7. **Timer** alarm from your metered safe pack time.
+8. Final **ELRS** packet rate / Telem ratio / TX power for your area.
 
 See the [final report](docs/final-report.md) for the full validation results.
 

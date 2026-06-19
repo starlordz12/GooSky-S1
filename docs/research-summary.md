@@ -8,24 +8,27 @@ Every claim below carries a status tag:
 - **[REPORTED]** – consistent across community/retailer sources; user must verify
 - **[TBD]** – `TBD – Verification Required` (not confirmable from available sources)
 
-> ⚠️ **Top-level caveat:** the official GooSky PDF manual could not be opened
-> directly during research (all direct fetches returned HTTP 403). Treat every
-> channel/curve/servo/governor/failsafe value as **provisional** until you have
-> confirmed it against your own unit's official manual and the GOOSKY app.
+> ✅ **Update:** the **official GOOSKY S1 Instruction Manual** was later supplied
+> by the user and **read directly** (source A0). This **verified** the specs,
+> the throttle/pitch flight-parameter table, the flight modes, the Pose/Manual
+> stability modes, throttle-hold, and binding. Items below are re-tagged
+> accordingly. A few **ELRS-specific** items (packet-rate/power/failsafe tuning,
+> and the Normal-mode governor %) remain `TBD`.
 
 ---
 
 ## 1. The aircraft: GooSky S1 (ELRS / GTS)
 
-- **[REPORTED]** GooSky S1 is a micro 3D flybarless helicopter with **dual
-  direct-drive brushless motors** (one main, one tail) and the **GTS
-  flight-control system** (configured over Bluetooth via the **GOOSKY mobile
-  app**). (E5, E6, A6)
-- **[REPORTED]** Physical specs (original S1): main rotor **290 mm**, length
-  **278 mm**, height **88 mm**, width **54 mm**, tail rotor **53 mm**, take-off
-  weight **≈107 g**. (E6)
-- **[REPORTED]** Power: **7.4 V 2S 300 mAh** LiPo (60C), flight time
-  **≈8 minutes**, charge time ≈30 min. (E6)
+- **[VERIFIED — A0 p.6]** GooSky S1 is a micro flybarless helicopter with **dual
+  brushless motors driving the main and tail rotors directly**, carbon-fibre
+  fuselage + aviation-grade aluminium, the **GTS system** (Higher-Order Control
+  Algorithms), **parameter adjustment by SmartPhone app (Bluetooth)**, and
+  **upgradeable FBL firmware**.
+- **[VERIFIED — A0 p.6]** Physical specs: length **278 mm**, height **88 mm**,
+  **main blade 125 mm**, **main rotor 290 mm**, **tail rotor 53 mm**, flying
+  weight **≈107 g**.
+- **[VERIFIED/REPORTED]** Power: **2S LiPo 300 mAh** (GooSky GT030039 LiPo set,
+  A0 p.24); flight time **≈8 min** is **[REPORTED]** (E6) — verify on your pack.
 - **[REPORTED]** The **ELRS / New Edition** version exposes an **ELRS interface**
   on the GTS controller and accepts **SBUS** from an ELRS receiver. (E2, E5)
 - **[TBD]** Exact identity "**S1 V3 Pro**": no retailer listing for that literal
@@ -35,19 +38,19 @@ Every claim below carries a status tag:
 
 ## 2. Flight controller (GTS) modes
 
-- **[VERIFIED/REPORTED]** The GTS controller provides **two stabilization
-  states**, switched on **CH5**:
-  - **Mode 1 – Self-stabilization (attitude / "POSE")** — strong self-levelling,
-    for beginners. (A5, A6, E2)
-  - **Mode 2 – 3D / Aerobatic** — self-levelling minimized, full 3D. (A6)
-- **[REPORTED]** Mode selection is via a **transmitter switch assigned to CH5**;
-  behaviour/limits are tuned in the **GOOSKY app**. (A5, E2)
-- **[TBD]** Whether the GTS firmware exposes a **third / intermediate**
-  stabilization state (e.g., a mid "rate+self-level" band on a 3-position CH5)
-  could not be confirmed. **This directly affects the Easy/Mild/Wild design**
-  (see §6).
-- **[TBD]** A dedicated **"rescue"** (self-right / bail-out) function and its
-  channel/behaviour could not be confirmed from available sources.
+- **[VERIFIED — A0, manual p.27]** The GTS provides **two stabilization states**,
+  selected by a transmitter switch (the stability channel, CH5):
+  - **Pose mode** — self-stabilization / attitude self-levelling (beginner).
+  - **Manual mode** — full manual / 3D (self-levelling off).
+- **[VERIFIED — A0, manual p.21]** Separately, there are **three head-speed /
+  collective "flight modes": General (Normal), IDLE 1, IDLE 2** — each with its
+  own throttle and pitch curve (see §7–§8). These are the standard Normal +
+  two Idle-Up modes and are **independent** of Pose/Manual.
+- **[VERIFIED]** Parameter limits/behaviour are tuned in the **GOOSKY SmartPhone
+  app** (Bluetooth); firmware (FBL) is upgradeable. (A0 p.6)
+- **[TBD]** A dedicated **"rescue"** (self-right / bail-out) function — the manual
+  shows transmitter labels incl. "Orientation"/"DIR" but does not document a
+  bail-out rescue; existence/behaviour remains **`TBD`**.
 
 ## 3. Channel map (ELRS → SBUS → GTS)
 
@@ -104,43 +107,61 @@ Every claim below carries a status tag:
   controller (no-pulse vs. set CH3 low) must be confirmed from the official
   manual. Until then this repo specifies **motor-off failsafe** and flags it.
 
-## 6. Flight modes: Easy / Mild / Wild (transmitter-side progression)
+## 6. Flight modes: Easy / Mild / Wild ← official General / IDLE1 / IDLE2
 
-- **[VERIFIED constraint]** The **GTS controller itself exposes only the two
-  stabilization states** described in §2 (on CH5). It does **not** natively
-  publish three named modes "Easy/Mild/Wild". (A5, A6, E2)
-- **Design decision (documented, not invented as a heli feature):** Easy / Mild /
-  Wild are implemented **on the transmitter** as a beginner-progression layer
-  that combines:
-  1. **CH5 stabilization state** (self-level vs 3D),
-  2. the **active throttle/head-speed curve** (low → high), and
-  3. **cyclic/tail rate (expo/weight) limits**.
-- This is a legitimate, common EdgeTX technique and does **not** add any
-  capability the FC lacks — it only chooses among capabilities the FC already
-  has. Specific curve/rate numbers are **[TBD]** and flagged in
-  [`flight-modes.md`](./flight-modes.md).
-- **[TBD]** Whether "Mild" should map to self-level-ON + higher head-speed, or to
-  a true intermediate FC state, depends on whether the GTS firmware exposes a mid
-  band (see §2). Until confirmed, "Mild" is defined as **self-level ON with a
-  higher head-speed curve** and is clearly flagged.
+- **[VERIFIED]** The official manual (A0 p.21) defines **three** head-speed/pitch
+  flight modes. This package maps its beginner-friendly names onto them **1:1**:
 
-## 7. Throttle / head-speed curves
+  | Package name | Official mode | Throttle (governor) | Pitch curve (°) |
+  |--------------|---------------|---------------------|------------------|
+  | **EASY** | **General / Normal** | TBD% (see §7) | +11.5 / +5.5 / +1.8 / -0.6 / -2.4 |
+  | **MILD** | **IDLE 1** | **flat 60%** | +11.5 / +5.5 / 0 / -5.5 / -11.5 |
+  | **WILD** | **IDLE 2** | **flat 70%** | +11.5 / +5.5 / 0 / -5.5 / -11.5 |
 
-- **[REPORTED — example only]** A community-reported S1/S2-family example:
-  - Normal: `0 – 40 – 60 – 60 – 60`
-  - Idle-Up 1: `65 – 65 – 65 – 65 – 65`
-  - Idle-Up 2: `75 – 75 – 75 – 75 – 75`
-  (E9) — **use only as a starting reference; verify head-speed against the GOOSKY
-  app and your blades/battery.**
-- **[TBD]** Official GooSky-recommended throttle curve and **governor / head-speed
-  target (RPM)** for the S1 — not confirmable; **[TBD]**.
+- For beginner safety this package additionally keeps **Pose mode (self-level) ON
+  by default** in Easy/Mild and lets the pilot move to **Manual mode** for Wild —
+  via the stability switch (CH5). Pose/Manual is **independent** of the
+  General/IDLE selection (both verified, §2).
+- **Honest note:** the *official* IDLE1 and IDLE2 both use **full symmetric
+  ±11.5° collective** — that is not "gentle". Easy (General) is the genuinely
+  beginner curve (reduced negative pitch). If you want a softer "Mild", reduce
+  its pitch below the official ±11.5°; the table above is the **manufacturer
+  value**, clearly labelled.
 
-## 8. Pitch curve / collective
+## 7. Throttle / head-speed curves  — **[VERIFIED (A0 p.21), partial]**
 
-- **[TBD]** Official collective **pitch curve** and **end-points/pitch range
-  (±°)** for the S1 — not confirmable from available sources; **[TBD]**. A
-  symmetric beginner pitch curve is *suggested* (and flagged) in the model docs,
-  but real pitch range must be set/limited in the GOOSKY app and bench-measured.
+- **IDLE 1: flat 60%**, **IDLE 2: flat 70%** — verified from the flight-parameter
+  table. Flat curves let the **governor** hold a constant head speed while
+  collective varies (standard for CP helis).
+- **General / Normal throttle %:** the manual's Normal-mode throttle figure did
+  **not render cleanly** from the scanned table (the IDLE values did). So the
+  **Normal governor %** is **`TBD`** — set it in the GOOSKY app (a value below
+  IDLE1's 60% is typical for a calm beginner head speed).
+- **[TBD]** Absolute **head-speed RPM** target is an app/governor setting; the
+  manual specifies throttle **%**, not RPM.
+
+## 8. Pitch curve / collective  — **[VERIFIED (A0 p.21)]**
+
+- Official collective pitch (degrees), per mode:
+  - **General/Normal (Easy):** `+11.5, +5.5, +1.8, -0.6, -2.4°` — asymmetric,
+    mostly positive → beginner-safe.
+  - **IDLE 1 (Mild) & IDLE 2 (Wild):** `+11.5, +5.5, 0, -5.5, -11.5°` — symmetric
+    **±11.5°** for inverted/3D.
+- **EdgeTX note:** EdgeTX collective is in **%**, the GTS app converts % → degrees
+  via its **pitch-range** setting. If the app pitch range is set to **±11.5°**,
+  the degrees above translate to the EdgeTX **%** curves used in the model file
+  (Easy ≈ `-21/-5/16/48/100`, Mild/Wild ≈ `-100/-48/0/48/100`). **Confirm the
+  app's pitch range and bench-measure with a pitch gauge** before flight.
+
+## 8a. Binding (official) — **[VERIFIED (A0 p.21)]**
+
+- **GOOSKY T8 transmitter:** power the heli on, **press BIND 3×**; blue LED
+  flashes fast; keep TX <1 m; **solid blue = bound**.
+- **Futaba transmitter:** set protocol **S-FHSS**, **long-press BIND** at
+  power-on; solid blue = bound.
+- **For this ELRS build:** binding is done on the **ELRS** side (bind phrase) as
+  in [`elrs-setup.md`](./elrs-setup.md); the GTS only needs valid **SBUS** input
+  (manual p.18 shows the FC's **S-BUS / DSMX / BIND / Data** connector).
 
 ## 9. RadioMaster TX15 Max (the radio)
 
@@ -158,14 +179,19 @@ Every claim below carries a status tag:
 
 ## Open questions / required user verification (carried into the final report)
 
-1. **Exact airframe/FC revision** ("S1 V3 Pro" vs S1 V2 / New Edition). **[TBD]**
+Resolved by the official manual (A0): specs ✅, flight modes ✅, **pitch curves**
+✅, **IDLE throttle %** ✅, stability (Pose/Manual) ✅, binding ✅. **Still open:**
+
+1. **Exact airframe/FC revision** ("S1 V3 Pro" naming vs the manual's "S1"). **[TBD]**
 2. **Channel reversing** for CH2/CH3 (and any others) — confirm by bench test. **[TBD]**
-3. **Does CH5 support a 3rd/mid stabilization band?** (drives Easy/Mild/Wild). **[TBD]**
-4. **Rescue function** existence, channel, and behaviour. **[TBD]**
-5. **Official throttle curve + governor / head-speed RPM target.** **[TBD]**
-6. **Official collective pitch curve / pitch range (±°).** **[TBD]**
-7. **Official failsafe configuration** sanctioned by GooSky for the GTS. **[TBD]**
-8. **Final ELRS packet rate / Telem ratio / TX power** for the user's conditions. **[TBD]**
+3. **Rescue / bail-out function** existence, channel, behaviour. **[TBD]**
+4. **Normal-mode governor %** (didn't render cleanly from the scan) + absolute
+   **head-speed RPM** target — set in the GOOSKY app. **[TBD]**
+5. **GTS app pitch-range (±°)** that the EdgeTX collective % maps to — confirm +
+   pitch-gauge measure. **[TBD]**
+6. **ELRS failsafe method** (no-pulse vs CH3-set-low) sanctioned for the GTS. **[TBD]**
+7. **Final ELRS packet rate / Telem ratio / TX power** for the user's conditions. **[TBD]**
+8. **Timer** alarm from the user's metered safe pack time. **[TBD]**
 
 These are restated in [`safety-checklist.md`](./safety-checklist.md) and in the
 final validation report.

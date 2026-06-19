@@ -4,15 +4,19 @@
 > master cut — use it.** Do not skip the bench section. Items marked
 > **`TBD – Verification Required`** must be resolved before flight.
 
-## A. One-time verification (resolve all `TBD`s)
+## A. One-time verification
 
-- [ ] Confirmed airframe/FC revision (S1 V2 / New Edition / "V3 Pro"). **[TBD]**
+Verified from the official manual (already in the model): throttle **60/70%**
+(Mild/Wild), pitch **+11.5…-2.4 / ±11.5°**, **Pose/Manual** stability, modes
+**General/IDLE1/IDLE2**, specs. Still confirm:
+
+- [ ] Confirmed airframe/FC revision matches the manual's "S1". **[TBD]**
 - [ ] Channel **reverse** directions bench-verified (esp. CH2/CH3). **[TBD]**
-- [ ] **CH5** Self-level/3D values confirmed and switch behaviour correct. **[TBD]**
-- [ ] **Throttle/head-speed curves** set from GOOSKY app. **[TBD]**
-- [ ] **Pitch curves & range (±°)** set and **measured with a pitch gauge**. **[TBD]**
-- [ ] **Governor / head-speed target** set in GOOSKY app. **[TBD]**
-- [ ] **Failsafe = motor-off**, method confirmed and **bench-tested**. **[TBD]**
+- [ ] **CH5** Pose/Manual endpoint values correct and switch behaves. **[TBD]**
+- [ ] **GTS app pitch-range (±°)** confirmed and pitch **measured with a gauge**
+      (the EdgeTX % assume ±11.5°). **[TBD]**
+- [ ] **Easy/Normal governor %** set in GOOSKY app (Mild/Wild verified 60/70). **[TBD]**
+- [ ] **Failsafe = motor-off**, ELRS method confirmed and **bench-tested**. **[TBD]**
 - [ ] **Timer T1** alarm set from *your* metered safe pack time. **[TBD]**
 - [ ] **ELRS** packet rate (333 Hz/8ch full-res), bind phrase, Model Match,
       conservative TX power. **[VERIFIED steps / TBD power]**

@@ -68,29 +68,32 @@ inputs:
 # ----------------------------------------------------------------------------
 # CURVES  (head-speed/throttle on CH3, collective pitch on CH6)
 # ----------------------------------------------------------------------------
-#  ⚠️ ALL CURVE POINTS BELOW ARE PLACEHOLDERS — TBD - Verification Required.
-#  Throttle curves mirror a community-REPORTED S1/S2-family example only.
-#  Pitch curves are conservative beginner shapes. Verify head-speed (governor)
-#  and pitch range (±°, pitch gauge) via the GOOSKY app before flight.
+#  THROTTLE + PITCH curves are now VERIFIED from the official GOOSKY S1 manual
+#  (p.21 flight-parameter table). Points are stick LOW->HIGH (0,25,50,75,100%).
+#  - Mild/Wild throttle = official flat 60% / 70%.  [VERIFIED]
+#  - Easy(Normal) throttle % did not render cleanly from the scan -> placeholder
+#    flat 50, marked TBD; set the Normal governor % in the GOOSKY app.
+#  - Pitch % below = official degrees mapped assuming the GTS app pitch range is
+#    set to +/-11.5deg (Easy +11.5..-2.4; Idle +/-11.5). VERIFY range + gauge.
 curves:
-  0:  # "ThrEasy"  Normal head-speed  [TBD]
+  0:  # "ThEasy"  General/Normal head-speed   [TBD - confirm in GOOSKY app]
     name: "ThEasy"
-    points: [0, 40, 60, 60, 60]
-  1:  # "ThrMild"  Idle-Up 1 flat     [TBD]
+    points: [50, 50, 50, 50, 50]
+  1:  # "ThMild"  IDLE 1 flat 60%             [VERIFIED - manual p.21]
     name: "ThMild"
-    points: [65, 65, 65, 65, 65]
-  2:  # "ThrWild"  Idle-Up 2 flat     [TBD]
+    points: [60, 60, 60, 60, 60]
+  2:  # "ThWild"  IDLE 2 flat 70%             [VERIFIED - manual p.21]
     name: "ThWild"
-    points: [75, 75, 75, 75, 75]
-  3:  # "PitEasy"  lifted/compressed  [TBD]
+    points: [70, 70, 70, 70, 70]
+  3:  # "PiEasy"  General +11.5..-2.4deg      [VERIFIED deg; %=app range +/-11.5]
     name: "PiEasy"
-    points: [40, 45, 50, 60, 70]
-  4:  # "PitMild"  near-normal        [TBD]
+    points: [-21, -5, 16, 48, 100]
+  4:  # "PiMild"  IDLE 1 symmetric +/-11.5deg [VERIFIED deg; %=app range +/-11.5]
     name: "PiMild"
-    points: [25, 38, 50, 62, 75]
-  5:  # "PitWild"  symmetric ±        [TBD]
+    points: [-100, -48, 0, 48, 100]
+  5:  # "PiWild"  IDLE 2 symmetric +/-11.5deg [VERIFIED deg; %=app range +/-11.5]
     name: "PiWild"
-    points: [0, 25, 50, 75, 100]
+    points: [-100, -48, 0, 48, 100]
 
 # ----------------------------------------------------------------------------
 # FLIGHT MODES  (Easy / Mild / Wild — TX-side progression on switch SA)
