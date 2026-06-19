@@ -17,8 +17,24 @@ Every claim below carries a status tag:
 
 ---
 
-## 1. The aircraft: GooSky S1 (ELRS / GTS)
+## 1. The aircraft: GooSky **S1 V2 (ELRS)** — confirmed by the user
 
+> **Identity resolved (was open question #1).** The user confirmed the airframe is
+> the **GooSky S1 V2 ELRS**, which **ships with a new flight controller** (not the
+> exact FC documented in the original S1 manual). The package's filenames keep the
+> user's original "S1 V3 Pro" label; **read every "S1 V3 Pro" reference as the
+> GooSky S1 V2 ELRS.**
+>
+> **New-FC caveat (important):** the throttle/pitch values in this package are
+> **verified from the *original* GOOSKY S1 manual** (source A0). The **S1 V2's new
+> FC may use updated defaults**, so treat those curves as a **strong, documented
+> baseline** and **confirm the V2's actual values in the GOOSKY app** before
+> flight. Channel map, swash=NONE, Pose/Manual, and binding flow still apply.
+
+- **[VERIFIED — community/retailer]** The **S1 V2 has an integrated ELRS
+  connector** on the flight control and accepts **SBUS** (also SFHSS/PPM/DSMX via
+  GooSky cables). Bind on the **ELRS** side (Lua `[BIND]`), set RX **PROTOCOL =
+  SBUS**, **power-cycle the heli** → the FC detects SBUS and plays init beeps.
 - **[VERIFIED — A0 p.6]** GooSky S1 is a micro flybarless helicopter with **dual
   brushless motors driving the main and tail rotors directly**, carbon-fibre
   fuselage + aviation-grade aluminium, the **GTS system** (Higher-Order Control
@@ -71,9 +87,10 @@ Every claim below carries a status tag:
   **transmitter must NOT apply CCPM/swash mixing** (swash type = none; pass
   channels straight). This is standard for flybarless units. (heli-FBL principle;
   consistent with A6)
-- **[TBD]** **Servo / channel reversing** (notably CH2 elevator and CH3 throttle
-  are *sometimes* reported reversed on ELRS-SBUS setups) is **unit/config
-  dependent** and must be confirmed by a bench direction-check, not assumed. (E2)
+- **[REPORTED — needs bench check]** Community setup for the GooSky FC commonly
+  reports **CH2 (elevator) and CH3 (throttle) need reversing** on ELRS-SBUS
+  setups. Treat as the likely default but **confirm by a bench direction-check**
+  (blades off) on your V2 — do not assume. (E2, OriginHobbies)
 - **[TBD]** Exact **failsafe positions** per channel from the official manual.
   Heli best-practice = **motor stop on signal loss**; see §5.
 
@@ -179,11 +196,13 @@ Every claim below carries a status tag:
 
 ## Open questions / required user verification (carried into the final report)
 
-Resolved by the official manual (A0): specs ✅, flight modes ✅, **pitch curves**
-✅, **IDLE throttle %** ✅, stability (Pose/Manual) ✅, binding ✅. **Still open:**
+Resolved: **airframe = GooSky S1 V2 ELRS** ✅ (user-confirmed). From the official
+manual (A0): specs ✅, flight modes ✅, **pitch curves** ✅, **IDLE throttle %** ✅,
+stability (Pose/Manual) ✅, binding ✅. **Still open:**
 
-1. **Exact airframe/FC revision** ("S1 V3 Pro" naming vs the manual's "S1"). **[TBD]**
-2. **Channel reversing** for CH2/CH3 (and any others) — confirm by bench test. **[TBD]**
+1. **S1 V2 new-FC defaults** — confirm the V2's throttle/pitch/governor in the
+   GOOSKY app (verified curves are from the *original* S1 manual; V2 FC is newer). **[TBD]**
+2. **Channel reversing** — CH2/CH3 reverse is *reported* likely; bench-confirm. **[REPORTED→verify]**
 3. **Rescue / bail-out function** existence, channel, behaviour. **[TBD]**
 4. **Normal-mode governor %** (didn't render cleanly from the scan) + absolute
    **head-speed RPM** target — set in the GOOSKY app. **[TBD]**

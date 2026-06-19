@@ -24,8 +24,8 @@ The GTS is a **flybarless** controller: it mixes the swashplate internally.
 | CH | EdgeTX source (Mode 2) | Function at the heli | Reverse? | Failsafe target |
 |----|------------------------|----------------------|----------|-----------------|
 | **1** | Aileron stick (right-horizontal) | **Aileron** (roll cyclic) | TBD – Verification Required | hold / centre — TBD |
-| **2** | Elevator stick (right-vertical) | **Elevator** (pitch cyclic) | **TBD** (often reversed on ELRS-SBUS) | hold / centre — TBD |
-| **3** | Throttle stick (left-vertical) **via throttle curve** | **Throttle → head speed** (governor in FC) | TBD – Verification Required | **MOTOR OFF / low** (see note) |
+| **2** | Elevator stick (right-vertical) | **Elevator** (pitch cyclic) | **REPORTED: reverse** (CH2 commonly reversed) — bench-confirm | hold / centre — TBD |
+| **3** | Throttle stick (left-vertical) **via throttle curve** | **Throttle → head speed** (governor in FC) | **REPORTED: reverse** (CH3 commonly reversed) — bench-confirm | **MOTOR OFF / low** (see note) |
 | **4** | Rudder stick (left-horizontal) | **Rudder** (yaw / tail) | TBD – Verification Required | hold / centre — TBD |
 | **5** | **Stability switch** (see `switch-table.md`) | **Pose mode (self-level) ↔ Manual mode (3D)** [VERIFIED p.27] | n/a | safe state — TBD |
 | **6** | **Collective pitch** (curve driven by flight mode + throttle stick) | **Collective pitch** | TBD – Verification Required | hold — TBD |

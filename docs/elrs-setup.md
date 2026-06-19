@@ -7,6 +7,12 @@ Required`).
 
 > The TX15 Max has **internal ELRS**, so the ELRS Lua script is at
 > **SYS → Tools → ExpressLRS** (not an external module). **[VERIFIED]** (D1, C4)
+>
+> **Your airframe = GooSky S1 V2 ELRS** (new FC). The **S1 V2 has an integrated
+> ELRS connector** on the flight control, so an ELRS receiver plugs straight in.
+> Quick flow: **ELRS Lua `[BIND]`** → set RX **PROTOCOL = SBUS** → **power-cycle
+> the heli** → the FC detects SBUS and plays its **initialization beeps**. The
+> steps below expand on this. **[REPORTED — community/retailer]**
 
 ## 0. Prerequisites
 

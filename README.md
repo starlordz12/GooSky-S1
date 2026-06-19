@@ -43,8 +43,14 @@ documented, and verifiable**.
 
 - **Radio:** RadioMaster TX15 Max — EdgeTX **3.0.0+**, **Mode 2**, AG02 Hall
   gimbals, **internal ExpressLRS 2.4 GHz**, 3.5″ IPS touchscreen.
-- **Aircraft:** GooSky S1 with **GTS flight controller** and an **ELRS receiver**
-  set to **SBUS**. Flybarless (the FC mixes its own swash).
+- **Aircraft:** **GooSky S1 V2 ELRS** (user-confirmed) — flybarless, dual
+  brushless, with a **new flight controller** and an **integrated ELRS
+  connector** (RX set to **SBUS**). The FC mixes its own swash.
+
+> **Model identity:** filenames/labels say "S1 V3 Pro" (the user's original
+> request); the actual airframe is the **GooSky S1 V2 ELRS**. The verified
+> throttle/pitch curves come from the *original* S1 manual and are a strong
+> baseline — **confirm them in the GOOSKY app**, since the V2's new FC may differ.
 
 ## How it works (one paragraph)
 
@@ -80,8 +86,9 @@ and switch map — it **never arms the heli or changes any setting**.
 binding.
 
 **Still resolve before flying (`TBD`):**
-1. Exact airframe/FC revision ("S1 V3 Pro" naming vs the manual's "S1").
-2. Channel **reverse** directions (esp. CH2/CH3) — bench check.
+1. **S1 V2 new-FC defaults** — confirm V2 throttle/pitch/governor in the GOOSKY
+   app (verified curves are the original-S1 baseline).
+2. Channel **reverse** directions — CH2/CH3 reverse is *reported likely*; bench-confirm.
 3. CH5 endpoint values for **Pose vs Manual**.
 4. **Rescue / bail-out** function existence/behaviour.
 5. **Normal-mode governor %** + confirm GTS app **pitch-range (±°)** with a gauge.

@@ -96,9 +96,11 @@ what is verified, what remains open, and what **you must verify before flight**.
 
 ## 6. Open questions / **required user verification** (`TBD`)
 
-1. **Exact airframe/FC revision** — the manual is titled "GOOSKY S1"; confirm the
-   user's "V3 Pro" maps to it.
-2. **Channel reversing** (esp. **CH2 elevator**, **CH3 throttle**) — bench-verify.
+1. **S1 V2 new-FC defaults** — airframe confirmed as **GooSky S1 V2 ELRS** (new
+   FC). Verified curves are the original-S1 baseline; **confirm the V2's
+   throttle/pitch/governor in the GOOSKY app.**
+2. **Channel reversing** — CH2/CH3 reverse is **reported likely** for the GooSky
+   FC; bench-verify on the V2 (blades off).
 3. **CH5 endpoint values** for Pose vs Manual.
 4. **Rescue / bail-out** function — existence, channel, behaviour.
 5. **Normal-mode governor %** (scan-unreadable) + confirm GTS app **pitch-range

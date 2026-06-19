@@ -17,8 +17,11 @@
 #  Channel order AETR + CH5 stability + CH6 collective  [REPORTED — verify].
 # =============================================================================
 
+# Airframe (user-confirmed): GooSky S1 V2 ELRS (new FC, integrated ELRS connector).
+# Filename keeps the original "V3 PRO" label. Verified curves are the original-S1
+# baseline -> confirm the V2's throttle/pitch/governor in the GOOSKY app.
 header:
-  name: "GOOSKY S1"
+  name: "GOOSKY S1V2"
   bitmap: "GOOSKY.bmp"
   modelId:
     - 0                      # Receiver No. — pair with ELRS Model Match. [TBD]
@@ -142,12 +145,14 @@ mixers:
 # ----------------------------------------------------------------------------
 # OUTPUTS / LIMITS  (per-channel reverse, endpoints, subtrim)
 # ----------------------------------------------------------------------------
-# Reverse flags are UNSET here on purpose — set them after a BENCH direction
-# check (blades off). CH2/CH3 are the usual suspects. TBD - Verification Required.
+# Reverse flags left at 0 (neutral) ON PURPOSE — control direction is a safety
+# item that MUST be confirmed by a BENCH direction-check (blades off) on YOUR
+# unit. For the GooSky FC, community setup REPORTS CH2 (ele) and CH3 (thr) often
+# need reversing on ELRS-SBUS — likely, but bench-confirm before trusting.
 limits:
   CH1: { min: -1000, max: 1000, revert: 0 }
-  CH2: { min: -1000, max: 1000, revert: 0 }   # may need revert: 1  [TBD]
-  CH3: { min: -1000, max: 1000, revert: 0 }   # may need revert: 1  [TBD]
+  CH2: { min: -1000, max: 1000, revert: 0 }   # REPORTED: likely needs revert: 1 — bench-confirm
+  CH3: { min: -1000, max: 1000, revert: 0 }   # REPORTED: likely needs revert: 1 — bench-confirm
   CH4: { min: -1000, max: 1000, revert: 0 }
   CH5: { min: -1000, max: 1000, revert: 0 }
   CH6: { min: -1000, max: 1000, revert: 0 }

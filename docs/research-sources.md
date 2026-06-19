@@ -24,19 +24,24 @@ flight-critical file was generated, in accordance with the project rules.
 - **Nothing flight-critical was invented.** Verified values cite the official
   manual (source **A0**); anything still unconfirmed is labelled, not guessed.
 
-## Model-name note
+## Model-name note (RESOLVED)
 
-A retailer/product listing for a model literally named **"GooSky S1 V3 Pro"**
-was **not** found during research. The GooSky S1 family that was found:
+The user **confirmed the airframe is the GooSky S1 V2 ELRS**, which **ships with a
+new flight controller**. The package keeps the user's original "S1 V3 Pro"
+filenames/labels; **read them as the GooSky S1 V2 ELRS.**
 
-- **GooSky S1 / Legend S1** — original micro 3D heli (S-FHSS / DSMX RX).
-- **GooSky S1 V2 / "S1 New Edition"** — adds an **ELRS interface** and the
-  **GTS flight-control system** (BNF/RTF).
+- **GooSky S1 V2 ELRS** — has an **integrated ELRS connector** on the flight
+  control; accepts **SBUS** (also SFHSS/PPM/DSMX via GooSky cables). New FC vs.
+  the original S1.
+- **Original GooSky S1 / Legend S1** — the unit the official manual (A0) documents
+  (S-FHSS / DSMX). Its flight-parameter table is used here as the verified
+  **baseline**; the V2's new FC may have updated defaults → **confirm in the
+  GOOSKY app.**
 
-This package is built for the **ELRS / GTS-equipped GooSky S1** and uses the
-name "GooSky S1 V3 Pro" as supplied by the user. **The exact version/revision
-of the user's airframe and flight controller is an open verification item**
-(see `research-summary.md`).
+Relevant S1 V2 references: AMain Hobbies S1 V2 listing
+(https://www.amainhobbies.com/goosky-s1-v2-combo-rtf-electric-helicopter-blue-gsk-baf030018/p1657089),
+New England RC S1 V2 (https://newenglandrc.us/collections/goosky-s1-v2),
+OriginHobbies ELRS-SBUS guide (E2).
 
 ---
 
