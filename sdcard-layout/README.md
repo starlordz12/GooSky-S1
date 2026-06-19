@@ -55,27 +55,39 @@ SD CARD (EdgeTX)
    there (newer EdgeTX auto-discovers — check your version).
 5. Eject, boot radio, select the model, review every page, resolve `TBD`s.
 
-## Voice prompts (optional, non-critical)
+## Voice prompts — use EdgeTX's built-in voice tools (no custom WAVs bundled)
 
-The model's special functions reference these spoken cues:
+By design this package does **not** ship custom audio. Generate the few spoken
+cues **on the radio with EdgeTX's own tools** (or EdgeTX Companion). EdgeTX's
+**default voice pack already speaks all numbers and many words**, so the timer
+call-out and most cues work out of the box.
 
-- `thrhold` — "Throttle hold" (on SF → HOLD)
-- timer call-out — speaks remaining flight time (uses EdgeTX number voices)
-- `easy` / `mild` / `wild` — flight-mode names (on SA)
-- `lowsignal` — link-quality warning (on low RQly)
+The model's special functions reference these cues:
 
-EdgeTX's **default voice pack** already provides numbers and many words. The
-**custom** clips (`easy.wav`, `mild.wav`, `wild.wav`, `thrhold.wav`,
-`lowsignal.wav`) are **not bundled** here. Options:
+| Cue | When | How to provide it in EdgeTX |
+|-----|------|------------------------------|
+| Remaining flight time | SF → HOLD (and timer) | **Already covered** by the default voice pack (Play Value / number voices) — nothing to record |
+| "Throttle hold" | SF → HOLD | Use the built-in word **`hold`** (or `thrhold.wav`) — see below |
+| "Easy" / "Mild" / "Wild" | flight mode (SA) | Record/synthesize `easy.wav` / `mild.wav` / `wild.wav` |
+| Link-quality warning | low RQly | Re-point to a built-in alert, or record `lowsignal.wav` |
 
-- Use EdgeTX's built-in **Text-To-Speech / sound recorder** or Companion to
-  generate them, or
-- Re-point those special functions to existing default sounds, or
-- Leave them — a **missing WAV just plays nothing** (no safety impact).
+### Make them on the radio (no PC needed)
+1. **EdgeTX → SYS → Tools → (if present) Voice/Recorder**, or use a
+   **Logical-Switch + Special Function → Play Track** and pick from the
+   **System/voice pack** sounds already on the SD card.
+2. To record your own: **Special Functions** can play any WAV you drop in
+   `/SOUNDS/en/` — record a clip on the radio's mic (TX15 Max has a built-in mic)
+   or generate one in Companion's sound tools, save as
+   `easy.wav` / `mild.wav` / `wild.wav`, 16-bit PCM WAV.
 
-> `[TBD]` exact filenames depend on your installed voice pack/language. Adjust
-> the special functions in the model to match what you actually place in
-> `/SOUNDS/en/`.
+### Or do nothing
+A **missing WAV simply plays nothing** — no error, no safety impact. The radio
+will still beep on switch changes. The flight-mode/throttle-hold call-outs are a
+**nicety, not a flight-critical function.**
+
+> Filenames/language depend on your installed voice pack. If you place files
+> under a different name or `/SOUNDS/<lang>/`, point the model's Special
+> Functions at the names you actually used (Model → Special Functions).
 
 ## After install — do not skip
 
