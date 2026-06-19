@@ -1,4 +1,4 @@
-# Final Validation Report — GooSky S1 V3 Pro EdgeTX Package
+# Final Validation Report — GooSky S1 V2 EdgeTX Package
 
 Generated at the end of the build. Summarizes what was created, the sources used,
 what is verified, what remains open, and what **you must verify before flight**.
@@ -8,7 +8,7 @@ what is verified, what remains open, and what **you must verify before flight**.
 | # | File | Type | Status |
 |---|------|------|--------|
 | 1 | `README.md` | Docs | complete |
-| 2 | `docs/goosky-s1-v3-pro-edgetx-profile.md` | Docs | complete (with TBDs flagged) |
+| 2 | `docs/goosky-s1-v2-edgetx-profile.md` | Docs | complete (with TBDs flagged) |
 | 3 | `docs/first-flight-guide.md` | Docs | complete |
 | 4 | `docs/switch-table.md` | Docs | complete |
 | 5 | `docs/channel-map.md` | Docs | complete (reverse/failsafe = TBD) |
@@ -18,10 +18,10 @@ what is verified, what remains open, and what **you must verify before flight**.
 | 9 | `docs/troubleshooting.md` | Docs | complete |
 | 10 | `docs/research-sources.md` | Research | complete |
 | 11 | `docs/research-summary.md` | Research | complete |
-| 12 | `models/GOOSKY_S1_V3_PRO.otx` | Model | human-readable descriptor (see file note) |
-| 13 | `models/GOOSKY_S1_V3_PRO_ELRS.yml` | Model | importable template (TBD placeholders) |
+| 12 | `models/GOOSKY_S1_V2.otx` | Model | human-readable descriptor (see file note) |
+| 13 | `models/GOOSKY_S1_V2_ELRS.yml` | Model | importable template (TBD placeholders) |
 | 14 | `lua/SCRIPTS/TOOLS/GooskyS1.lua` | Lua | complete, syntax-validated, read-only |
-| 15 | `assets/goosky-s1-v3-pro-purple.md` | Asset docs | complete |
+| 15 | `assets/goosky-s1-v2-purple.md` | Asset docs | complete |
 | 16 | `BITMAPS/GOOSKY.bmp` | Image | valid 24-bit BMP, 160×96, purple |
 | 17 | `sdcard-layout/README.md` | Docs | complete |
 | 18 | `docs/final-report.md` | Report | this file |

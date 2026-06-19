@@ -1,5 +1,5 @@
 # =============================================================================
-# GOOSKY_S1_V3_PRO.otx  —  EdgeTX Companion model descriptor (TEMPLATE)
+# GOOSKY_S1_V2.otx  —  EdgeTX Companion model descriptor (TEMPLATE)
 # =============================================================================
 #
 # HONEST FORMAT NOTE — PLEASE READ
@@ -10,13 +10,13 @@
 # descriptor that mirrors the authoritative model definition.
 #
 # AUTHORITATIVE, IMPORTABLE FILE:
-#     /models/GOOSKY_S1_V3_PRO_ELRS.yml   (EdgeTX on-radio model YAML)
+#     /models/GOOSKY_S1_V2_ELRS.yml   (EdgeTX on-radio model YAML)
 #
 # HOW TO USE THIS MODEL
 #   Option A (recommended): Open EdgeTX Companion 2.10+, create/import the model
-#     from GOOSKY_S1_V3_PRO_ELRS.yml, review EVERY page, then write to the radio
+#     from GOOSKY_S1_V2_ELRS.yml, review EVERY page, then write to the radio
 #     and "Save As..." a real .otx/.etx from Companion if you want a binary copy.
-#   Option B: On the radio's SD card, copy GOOSKY_S1_V3_PRO_ELRS.yml into /MODELS
+#   Option B: On the radio's SD card, copy GOOSKY_S1_V2_ELRS.yml into /MODELS
 #     as the next modelNN.yml and add it to MODELS.TXT (see /sdcard-layout).
 #
 #  ⚠️  TEMPLATE — NOT FLIGHT-VALIDATED. Every flight-critical value is a
@@ -59,6 +59,6 @@ Timers
 
 # =============================================================================
 # For the precise inputs/mixes/curves/special-functions, see:
-#     /models/GOOSKY_S1_V3_PRO_ELRS.yml
-#     /docs/goosky-s1-v3-pro-edgetx-profile.md
+#     /models/GOOSKY_S1_V2_ELRS.yml
+#     /docs/goosky-s1-v2-edgetx-profile.md
 # =============================================================================

@@ -1,4 +1,4 @@
-# Safety Checklist — GooSky S1 V3 Pro
+# Safety Checklist — GooSky S1 V2
 
 > Spinning helicopter blades cause serious injury. **Throttle Hold (SF) is your
 > master cut — use it.** Do not skip the bench section. Items marked

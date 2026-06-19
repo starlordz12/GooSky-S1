@@ -22,7 +22,7 @@ Every claim below carries a status tag:
 > **Identity resolved (was open question #1).** The user confirmed the airframe is
 > the **GooSky S1 V2 ELRS**, which **ships with a new flight controller** (not the
 > exact FC documented in the original S1 manual). The package's filenames keep the
-> user's original "S1 V3 Pro" label; **read every "S1 V3 Pro" reference as the
+> user's original "S1 V2" label; **read every "S1 V2" reference as the
 > GooSky S1 V2 ELRS.**
 >
 > **New-FC caveat (important):** the throttle/pitch values in this package are
@@ -31,10 +31,18 @@ Every claim below carries a status tag:
 > baseline** and **confirm the V2's actual values in the GOOSKY app** before
 > flight. Channel map, swash=NONE, Pose/Manual, and binding flow still apply.
 
+- **[VERIFIED — retailer GT part #]** The **S1 V2 flight controller is part
+  number GT030077** (AMain/eBay listings), a **new board** vs. the original S1's
+  **GT030024**. This is why V2 defaults may differ from the original-S1 manual.
 - **[VERIFIED — community/retailer]** The **S1 V2 has an integrated ELRS
   connector** on the flight control and accepts **SBUS** (also SFHSS/PPM/DSMX via
   GooSky cables). Bind on the **ELRS** side (Lua `[BIND]`), set RX **PROTOCOL =
   SBUS**, **power-cycle the heli** → the FC detects SBUS and plays init beeps.
+- **[VERIFIED — community]** **GOOSKY app:** search "GOOSKY" in the App Store /
+  Google Play (or scan GooSky's QR). It connects over Bluetooth (device name
+  `GOOSKY-IOS-xxxxx` / `GOOSKY-Android-xxxxx`) to set servo directions, pitch
+  range, governor/head-speed, and gains — **this is where you confirm the V2's
+  flight-critical defaults.**
 - **[VERIFIED — A0 p.6]** GooSky S1 is a micro flybarless helicopter with **dual
   brushless motors driving the main and tail rotors directly**, carbon-fibre
   fuselage + aviation-grade aluminium, the **GTS system** (Higher-Order Control
@@ -47,7 +55,7 @@ Every claim below carries a status tag:
   A0 p.24); flight time **≈8 min** is **[REPORTED]** (E6) — verify on your pack.
 - **[REPORTED]** The **ELRS / New Edition** version exposes an **ELRS interface**
   on the GTS controller and accepts **SBUS** from an ELRS receiver. (E2, E5)
-- **[TBD]** Exact identity "**S1 V3 Pro**": no retailer listing for that literal
+- **[TBD]** Exact identity "**S1 V2**": no retailer listing for that literal
   name was found. The user must confirm whether their unit is the S1 V2 / S1 New
   Edition / a later revision, since flight-control firmware and defaults can
   differ. (See open questions.)

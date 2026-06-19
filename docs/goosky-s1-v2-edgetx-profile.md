@@ -1,8 +1,8 @@
-# GooSky S1 V3 Pro — EdgeTX Model Profile
+# GooSky S1 V2 — EdgeTX Model Profile
 
 Human-readable description of the EdgeTX model in
-[`/models/GOOSKY_S1_V3_PRO.otx`](../models/GOOSKY_S1_V3_PRO.otx) /
-[`/models/GOOSKY_S1_V3_PRO_ELRS.yml`](../models/GOOSKY_S1_V3_PRO_ELRS.yml).
+[`/models/GOOSKY_S1_V2.otx`](../models/GOOSKY_S1_V2.otx) /
+[`/models/GOOSKY_S1_V2_ELRS.yml`](../models/GOOSKY_S1_V2_ELRS.yml).
 
 > ⚠️ **This model is a documented template, not a flight-validated profile.**
 > It was built from research in which the **official GooSky manual could not be

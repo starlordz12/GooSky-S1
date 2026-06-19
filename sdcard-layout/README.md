@@ -1,4 +1,4 @@
-# SD-Card Layout — GooSky S1 V3 Pro package (RadioMaster TX15 Max / EdgeTX)
+# SD-Card Layout — GooSky S1 V2 package (RadioMaster TX15 Max / EdgeTX)
 
 How to place the files from this repository onto the radio's SD card. This does
 **not** replace your EdgeTX SD-card contents — you are **adding** a model, a
@@ -11,8 +11,8 @@ structure.
 
 | Repo file | Copy to (SD card) | Notes |
 |-----------|-------------------|-------|
-| `models/GOOSKY_S1_V3_PRO_ELRS.yml` | `/MODELS/modelNN.yml` | Authoritative model. Easiest path is to **import via EdgeTX Companion** instead of hand-placing. If placing manually, use the next free `modelNN.yml` and register it (see below). |
-| `models/GOOSKY_S1_V3_PRO.otx` | *(not copied)* | Human-readable descriptor only — see the file's header. Use Companion to build a real binary if you want one. |
+| `models/GOOSKY_S1_V2_ELRS.yml` | `/MODELS/modelNN.yml` | Authoritative model. Easiest path is to **import via EdgeTX Companion** instead of hand-placing. If placing manually, use the next free `modelNN.yml` and register it (see below). |
+| `models/GOOSKY_S1_V2.otx` | *(not copied)* | Human-readable descriptor only — see the file's header. Use Companion to build a real binary if you want one. |
 | `BITMAPS/GOOSKY.bmp` | `/BITMAPS/GOOSKY.bmp` | Model image (purple). |
 | `lua/SCRIPTS/TOOLS/GooskyS1.lua` | `/SCRIPTS/TOOLS/GooskyS1.lua` | Appears under **SYS → Tools → GooSky S1**. |
 | (voice files, optional) | `/SOUNDS/en/...` | See "Voice prompts" below. |
@@ -23,7 +23,7 @@ structure.
 SD CARD (EdgeTX)
 ├── MODELS/
 │   ├── MODELS.TXT            <- registry of model files (if your build uses it)
-│   └── modelNN.yml           <- GOOSKY_S1_V3_PRO_ELRS.yml goes here
+│   └── modelNN.yml           <- GOOSKY_S1_V2_ELRS.yml goes here
 ├── BITMAPS/
 │   └── GOOSKY.bmp
 ├── SCRIPTS/
@@ -38,7 +38,7 @@ SD CARD (EdgeTX)
 ## Recommended install (Companion — fewest mistakes)
 
 1. **EdgeTX Companion 2.10+** → open your radio profile.
-2. **Models** → import `GOOSKY_S1_V3_PRO_ELRS.yml` into a free slot.
+2. **Models** → import `GOOSKY_S1_V2_ELRS.yml` into a free slot.
 3. Review **every** page; resolve all `TBD – Verification Required` values from
    the official GooSky manual + GOOSKY app (see `/docs/`).
 4. Copy `GOOSKY.bmp` to `/BITMAPS/` and `GooskyS1.lua` to `/SCRIPTS/TOOLS/`
@@ -50,7 +50,7 @@ SD CARD (EdgeTX)
 1. Card reader → SD card.
 2. `GOOSKY.bmp` → `/BITMAPS/`.
 3. `GooskyS1.lua` → `/SCRIPTS/TOOLS/`.
-4. `GOOSKY_S1_V3_PRO_ELRS.yml` → `/MODELS/` as the next `modelNN.yml`. If your
+4. `GOOSKY_S1_V2_ELRS.yml` → `/MODELS/` as the next `modelNN.yml`. If your
    EdgeTX build uses `/MODELS/MODELS.TXT` as a registry, add the new filename
    there (newer EdgeTX auto-discovers — check your version).
 5. Eject, boot radio, select the model, review every page, resolve `TBD`s.

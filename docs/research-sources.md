@@ -1,7 +1,7 @@
 # Research Sources
 
 This document lists every source consulted during the **mandatory research phase**
-for the GooSky S1 V3 Pro EdgeTX package. Research was performed **before** any
+for the GooSky S1 V2 EdgeTX package. Research was performed **before** any
 flight-critical file was generated, in accordance with the project rules.
 
 ## Research method & limitations (read this first)
@@ -27,7 +27,7 @@ flight-critical file was generated, in accordance with the project rules.
 ## Model-name note (RESOLVED)
 
 The user **confirmed the airframe is the GooSky S1 V2 ELRS**, which **ships with a
-new flight controller**. The package keeps the user's original "S1 V3 Pro"
+new flight controller**. The package keeps the user's original "S1 V2"
 filenames/labels; **read them as the GooSky S1 V2 ELRS.**
 
 - **GooSky S1 V2 ELRS** — has an **integrated ELRS connector** on the flight
@@ -40,6 +40,9 @@ filenames/labels; **read them as the GooSky S1 V2 ELRS.**
 
 Relevant S1 V2 references: AMain Hobbies S1 V2 listing
 (https://www.amainhobbies.com/goosky-s1-v2-combo-rtf-electric-helicopter-blue-gsk-baf030018/p1657089),
+**S1 V2 Flight Control Module GT030077**
+(https://www.amainhobbies.com/goosky-s1-v2-flight-control-module-gsk-gt030077/p1657098)
+— new FC vs. original S1 **GT030024**,
 New England RC S1 V2 (https://newenglandrc.us/collections/goosky-s1-v2),
 OriginHobbies ELRS-SBUS guide (E2).
 

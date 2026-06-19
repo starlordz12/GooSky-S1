@@ -1,4 +1,4 @@
-# First-Flight Guide — GooSky S1 V3 Pro
+# First-Flight Guide — GooSky S1 V2
 
 A calm, beginner-first walkthrough. **Do every bench step before the field.**
 
@@ -6,7 +6,7 @@ A calm, beginner-first walkthrough. **Do every bench step before the field.**
 > whenever a battery is connected. **Throttle Hold (SF) stays ON until you are
 > ready and clear.** Several settings in this package are
 > `TBD – Verification Required` — resolve them (per
-> [`goosky-s1-v3-pro-edgetx-profile.md`](./goosky-s1-v3-pro-edgetx-profile.md))
+> [`goosky-s1-v2-edgetx-profile.md`](./goosky-s1-v2-edgetx-profile.md))
 > **before** flying. If unsure, stop.
 
 ## Part 1 — Bench setup (blades REMOVED)

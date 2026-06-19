@@ -1,4 +1,4 @@
-# GooSky S1 V3 Pro — Purple Image Asset
+# GooSky S1 V2 — Purple Image Asset
 
 Describes the bundled model bitmap for the purple GooSky S1.
 

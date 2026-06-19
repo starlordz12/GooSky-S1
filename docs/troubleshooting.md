@@ -1,4 +1,4 @@
-# Troubleshooting — GooSky S1 V3 Pro (ELRS / EdgeTX)
+# Troubleshooting — GooSky S1 V2 (ELRS / EdgeTX)
 
 > First rule when anything is wrong in the air: **Throttle Hold (SF) ON.**
 > Status tags as elsewhere: **[VERIFIED] / [REPORTED] / [TBD]**.

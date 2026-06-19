@@ -1,4 +1,4 @@
-# GooSky S1 V3 Pro — EdgeTX Package (RadioMaster TX15 Max, Mode 2)
+# GooSky S1 V2 — EdgeTX Package (RadioMaster TX15 Max, Mode 2)
 
 A beginner-friendly, **research-backed** EdgeTX package for the **GooSky S1
 (ELRS / GTS)** helicopter on a **RadioMaster TX15 Max** with **internal
@@ -21,7 +21,7 @@ documented, and verifiable**.
 | Area | File |
 |------|------|
 | This overview | [`README.md`](README.md) |
-| Model profile (human-readable) | [`docs/goosky-s1-v3-pro-edgetx-profile.md`](docs/goosky-s1-v3-pro-edgetx-profile.md) |
+| Model profile (human-readable) | [`docs/goosky-s1-v2-edgetx-profile.md`](docs/goosky-s1-v2-edgetx-profile.md) |
 | First-flight guide | [`docs/first-flight-guide.md`](docs/first-flight-guide.md) |
 | Switch table | [`docs/switch-table.md`](docs/switch-table.md) |
 | Channel map | [`docs/channel-map.md`](docs/channel-map.md) |
@@ -31,10 +31,10 @@ documented, and verifiable**.
 | Troubleshooting | [`docs/troubleshooting.md`](docs/troubleshooting.md) |
 | Research sources | [`docs/research-sources.md`](docs/research-sources.md) |
 | Research summary | [`docs/research-summary.md`](docs/research-summary.md) |
-| EdgeTX model (Companion descriptor) | [`models/GOOSKY_S1_V3_PRO.otx`](models/GOOSKY_S1_V3_PRO.otx) |
-| EdgeTX model (on-radio YAML, authoritative) | [`models/GOOSKY_S1_V3_PRO_ELRS.yml`](models/GOOSKY_S1_V3_PRO_ELRS.yml) |
+| EdgeTX model (Companion descriptor) | [`models/GOOSKY_S1_V2.otx`](models/GOOSKY_S1_V2.otx) |
+| EdgeTX model (on-radio YAML, authoritative) | [`models/GOOSKY_S1_V2_ELRS.yml`](models/GOOSKY_S1_V2_ELRS.yml) |
 | Lua pre-flight tool (read-only) | [`lua/SCRIPTS/TOOLS/GooskyS1.lua`](lua/SCRIPTS/TOOLS/GooskyS1.lua) |
-| Purple image asset notes | [`assets/goosky-s1-v3-pro-purple.md`](assets/goosky-s1-v3-pro-purple.md) |
+| Purple image asset notes | [`assets/goosky-s1-v2-purple.md`](assets/goosky-s1-v2-purple.md) |
 | Model bitmap (purple) | [`BITMAPS/GOOSKY.bmp`](BITMAPS/GOOSKY.bmp) |
 | SD-card install layout | [`sdcard-layout/README.md`](sdcard-layout/README.md) |
 | Final validation report | [`docs/final-report.md`](docs/final-report.md) |
@@ -47,10 +47,11 @@ documented, and verifiable**.
   brushless, with a **new flight controller** and an **integrated ELRS
   connector** (RX set to **SBUS**). The FC mixes its own swash.
 
-> **Model identity:** filenames/labels say "S1 V3 Pro" (the user's original
-> request); the actual airframe is the **GooSky S1 V2 ELRS**. The verified
-> throttle/pitch curves come from the *original* S1 manual and are a strong
-> baseline — **confirm them in the GOOSKY app**, since the V2's new FC may differ.
+> **Model identity:** the airframe is the **GooSky S1 V2 ELRS**, whose flight
+> controller is the **new GT030077** board (the original S1 used GT030024). The
+> verified throttle/pitch curves come from the *original* S1 manual and are a
+> strong baseline — **confirm them in the GOOSKY app**, since the V2's new FC may
+> ship different defaults.
 
 ## How it works (one paragraph)
 

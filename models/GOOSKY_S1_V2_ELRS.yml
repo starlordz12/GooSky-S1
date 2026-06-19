@@ -1,5 +1,5 @@
 # =============================================================================
-# EdgeTX MODEL FILE  —  GooSky S1 V3 Pro (ELRS / GTS)  —  RadioMaster TX15 Max
+# EdgeTX MODEL FILE  —  GooSky S1 V2 (ELRS / GTS)  —  RadioMaster TX15 Max
 # =============================================================================
 # Format: EdgeTX on-radio model YAML (place as a modelNN.yml under /MODELS, or
 #         import via EdgeTX Companion 2.10+). Target firmware: EdgeTX 3.0.0+.
@@ -11,7 +11,7 @@
 #    1) Import into EdgeTX Companion 2.10+ and review EVERY page.
 #    2) Set all TBD values from the official GooSky manual + GOOSKY app.
 #    3) Bench-test with BLADES REMOVED (directions, CH5, failsafe = motor-off).
-#  See /docs/goosky-s1-v3-pro-edgetx-profile.md and /docs/safety-checklist.md.
+#  See /docs/goosky-s1-v2-edgetx-profile.md and /docs/safety-checklist.md.
 #
 #  Conventions: Mode 2.  Swash = NONE (the flybarless GTS mixes its own swash).
 #  Channel order AETR + CH5 stability + CH6 collective  [REPORTED — verify].

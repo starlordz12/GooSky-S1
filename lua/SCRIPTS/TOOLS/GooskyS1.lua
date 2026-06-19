@@ -1,5 +1,5 @@
 -- =========================================================================
--- GooskyS1.lua  -  EdgeTX TOOLS script for the GooSky S1 V3 Pro (ELRS / GTS)
+-- GooskyS1.lua  -  EdgeTX TOOLS script for the GooSky S1 V2 (ELRS / GTS)
 -- Radio: RadioMaster TX15 Max (EdgeTX 3.0.0+)   Location: /SCRIPTS/TOOLS/
 -- =========================================================================
 -- PURPOSE: a READ-ONLY pre-flight dashboard. It displays flight mode, timer,
@@ -101,7 +101,7 @@ local PAGES = 2
 
 local function header(title)
   lcd.clear()
-  lcd.drawText(3, 2, "GooSky S1 V3 Pro", INVERS)
+  lcd.drawText(3, 2, "GooSky S1 V2", INVERS)
   lcd.drawText(LCD_W - 3, 2, title, RIGHT + INVERS)
   lcd.drawLine(0, 14, LCD_W, 14, SOLID, FORCE)
 end
