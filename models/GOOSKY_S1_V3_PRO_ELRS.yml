@@ -1,0 +1,187 @@
+# =============================================================================
+# EdgeTX MODEL FILE  —  GooSky S1 V3 Pro (ELRS / GTS)  —  RadioMaster TX15 Max
+# =============================================================================
+# Format: EdgeTX on-radio model YAML (place as a modelNN.yml under /MODELS, or
+#         import via EdgeTX Companion 2.10+). Target firmware: EdgeTX 3.0.0+.
+#
+#  ⚠️  THIS IS A DOCUMENTED TEMPLATE — NOT A FLIGHT-VALIDATED PROFILE.  ⚠️
+#  The official GooSky manual could NOT be read during research (fetches blocked),
+#  so every flight-critical value below is a conservative PLACEHOLDER and is
+#  marked  "TBD - Verification Required".  Before flying you MUST:
+#    1) Import into EdgeTX Companion 2.10+ and review EVERY page.
+#    2) Set all TBD values from the official GooSky manual + GOOSKY app.
+#    3) Bench-test with BLADES REMOVED (directions, CH5, failsafe = motor-off).
+#  See /docs/goosky-s1-v3-pro-edgetx-profile.md and /docs/safety-checklist.md.
+#
+#  Conventions: Mode 2.  Swash = NONE (the flybarless GTS mixes its own swash).
+#  Channel order AETR + CH5 stability + CH6 collective  [REPORTED — verify].
+# =============================================================================
+
+header:
+  name: "GOOSKY S1"
+  bitmap: "GOOSKY.bmp"
+  modelId:
+    - 0                      # Receiver No. — pair with ELRS Model Match. [TBD]
+
+# ----------------------------------------------------------------------------
+# TIMERS
+# ----------------------------------------------------------------------------
+# T1 = flight time, counts only when Throttle Hold is OFF (throttle live).
+# Alarm value below is a PLACEHOLDER. Set it from YOUR metered safe pack time
+# (the generic "~8 min" S1 figure is REPORTED, not a guarantee).  [TBD]
+timers:
+  0:
+    name: "FLIGHT"
+    value: 270               # 4:30  — PLACEHOLDER. TBD - Verification Required
+    mode: THs                # run when throttle stick > hold (throttle-run)
+    countdownBeep: Beeps
+    minuteBeep: true
+    persistent: 0
+  1:
+    name: "PWRON"
+    value: 0
+    mode: "ON"               # optional total power-on timer (off-impact)
+
+# ----------------------------------------------------------------------------
+# STICK / SWASH SETUP
+# ----------------------------------------------------------------------------
+# Swash type NONE — the GTS flybarless controller performs swash mixing.
+# Do NOT enable CCPM/120 swash here. [VERIFIED principle]
+swashRing:
+  type: 0                    # 0 = none
+
+# ----------------------------------------------------------------------------
+# INPUTS  (Mode 2)
+# ----------------------------------------------------------------------------
+# Rate/expo are applied per FLIGHT MODE further below via mix weights.
+# These input weights are gentle, beginner-leaning defaults. [design / verify]
+inputs:
+  Ail:
+    0: { weight: 100, srcRaw: Ail, expo: 20 }   # expo/rate refined per mode
+  Ele:
+    0: { weight: 100, srcRaw: Ele, expo: 20 }
+  Thr:
+    0: { weight: 100, srcRaw: Thr }             # raw stick; curve applied on CH3
+  Rud:
+    0: { weight: 100, srcRaw: Rud, expo: 15 }
+
+# ----------------------------------------------------------------------------
+# CURVES  (head-speed/throttle on CH3, collective pitch on CH6)
+# ----------------------------------------------------------------------------
+#  ⚠️ ALL CURVE POINTS BELOW ARE PLACEHOLDERS — TBD - Verification Required.
+#  Throttle curves mirror a community-REPORTED S1/S2-family example only.
+#  Pitch curves are conservative beginner shapes. Verify head-speed (governor)
+#  and pitch range (±°, pitch gauge) via the GOOSKY app before flight.
+curves:
+  0:  # "ThrEasy"  Normal head-speed  [TBD]
+    name: "ThEasy"
+    points: [0, 40, 60, 60, 60]
+  1:  # "ThrMild"  Idle-Up 1 flat     [TBD]
+    name: "ThMild"
+    points: [65, 65, 65, 65, 65]
+  2:  # "ThrWild"  Idle-Up 2 flat     [TBD]
+    name: "ThWild"
+    points: [75, 75, 75, 75, 75]
+  3:  # "PitEasy"  lifted/compressed  [TBD]
+    name: "PiEasy"
+    points: [40, 45, 50, 60, 70]
+  4:  # "PitMild"  near-normal        [TBD]
+    name: "PiMild"
+    points: [25, 38, 50, 62, 75]
+  5:  # "PitWild"  symmetric ±        [TBD]
+    name: "PiWild"
+    points: [0, 25, 50, 75, 100]
+
+# ----------------------------------------------------------------------------
+# FLIGHT MODES  (Easy / Mild / Wild — TX-side progression on switch SA)
+# ----------------------------------------------------------------------------
+# FM0 = Easy (SA up), FM1 = Mild (SA mid), FM2 = Wild (SA down).
+# These are a transmitter-side layer; the GTS itself only has Self-level/3D on
+# CH5. See /docs/flight-modes.md. Switch logic is set in Companion.
+flightModes:
+  0:
+    name: "EASY"             # SA-Up: self-level + low head-speed + gentle rates
+  1:
+    name: "MILD"             # SA-Mid: self-level + higher head-speed
+    switch: SA1
+  2:
+    name: "WILD"             # SA-Down: 3D + full head-speed + full pitch
+    switch: SA2
+
+# ----------------------------------------------------------------------------
+# MIXES  (channels)
+# ----------------------------------------------------------------------------
+# CH1 Ail, CH2 Ele, CH3 Throttle(curve), CH4 Rud, CH5 Stability, CH6 Pitch(curve)
+# NO swash mixing. Reverse on CH2/CH3 is TBD — verify on the bench (blades off).
+mixers:
+  CH1:                       # AILERON
+    0: { name: "Ail", srcRaw: Ail, weight: 100 }
+  CH2:                       # ELEVATOR  (weight may need -100 = reverse) [TBD]
+    0: { name: "Ele", srcRaw: Ele, weight: 100 }
+  CH3:                       # THROTTLE -> head speed (governor in FC)
+    # Per-flight-mode throttle curves; Throttle Hold (SF up) overrides to cut.
+    0: { name: "Hold", srcRaw: MAX, weight: -100, switch: SF1 }   # SF up = HOLD/cut [TBD value]
+    1: { name: "TEasy", srcRaw: Thr, curveType: CustomCurve, curveValue: 1, flightModes: [MILD, WILD] }  # use ThEasy in Easy only
+    2: { name: "TMild", srcRaw: Thr, curveType: CustomCurve, curveValue: 2, flightModes: [EASY, WILD] }
+    3: { name: "TWild", srcRaw: Thr, curveType: CustomCurve, curveValue: 3, flightModes: [EASY, MILD] }
+    # NOTE: the curveValue indices above are 1-based to match Companion display.
+    # Verify the active-curve-per-mode logic in Companion (flightModes masks). [TBD]
+  CH4:                       # RUDDER
+    0: { name: "Rud", srcRaw: Rud, weight: 100 }
+  CH5:                       # STABILITY / POSE (Self-level <-> 3D)
+    # Driven by SB by default (see /docs/switch-table.md). Endpoint µs = TBD.
+    0: { name: "Stab", srcRaw: SB, weight: 100 }                  # CH5 value per state TBD
+  CH6:                       # COLLECTIVE PITCH (per-mode pitch curves)
+    0: { name: "PEasy", srcRaw: Thr, curveType: CustomCurve, curveValue: 4, flightModes: [MILD, WILD] }
+    1: { name: "PMild", srcRaw: Thr, curveType: CustomCurve, curveValue: 5, flightModes: [EASY, WILD] }
+    2: { name: "PWild", srcRaw: Thr, curveType: CustomCurve, curveValue: 6, flightModes: [EASY, MILD] }
+
+# ----------------------------------------------------------------------------
+# OUTPUTS / LIMITS  (per-channel reverse, endpoints, subtrim)
+# ----------------------------------------------------------------------------
+# Reverse flags are UNSET here on purpose — set them after a BENCH direction
+# check (blades off). CH2/CH3 are the usual suspects. TBD - Verification Required.
+limits:
+  CH1: { min: -1000, max: 1000, revert: 0 }
+  CH2: { min: -1000, max: 1000, revert: 0 }   # may need revert: 1  [TBD]
+  CH3: { min: -1000, max: 1000, revert: 0 }   # may need revert: 1  [TBD]
+  CH4: { min: -1000, max: 1000, revert: 0 }
+  CH5: { min: -1000, max: 1000, revert: 0 }
+  CH6: { min: -1000, max: 1000, revert: 0 }
+
+# ----------------------------------------------------------------------------
+# SPECIAL FUNCTIONS  (voice / safety call-outs)  — see /sdcard-layout/README.md
+# ----------------------------------------------------------------------------
+# Uses EdgeTX default voice pack file names. If a referenced WAV is missing the
+# announcement is simply silent (non-critical). [design / verify sound pack]
+customFn:
+  0: { switch: SF1, func: PlayTrack, param: "thrhold" }     # "Throttle hold"
+  1: { switch: SF-Up→Down edge, func: PlayValue, param: TIMER1 }  # speak remaining time (set in Companion)
+  2: { switch: SA0, func: PlayTrack, param: "easy" }        # "Easy"   [needs WAV]
+  3: { switch: SA1, func: PlayTrack, param: "mild" }        # "Mild"   [needs WAV]
+  4: { switch: SA2, func: PlayTrack, param: "wild" }        # "Wild"   [needs WAV]
+  5: { switch: TELE.RQly<50, func: PlayTrack, param: "lowsignal" }  # link warning [TBD threshold]
+
+# ----------------------------------------------------------------------------
+# INTERNAL RF MODULE  (ExpressLRS / CRSF)
+# ----------------------------------------------------------------------------
+# Configure the rest (packet rate 333Hz, 8ch full-res, bind phrase, Model Match)
+# in SYS -> Tools -> ExpressLRS.  See /docs/elrs-setup.md.
+moduleData:
+  0:
+    type: CRSF               # internal ELRS speaks CRSF to EdgeTX
+    channelsCount: 8         # 8ch full-resolution (heli needs >=5 full-res) [VERIFIED need]
+    failsafeMode: NotSet     # set per /docs/elrs-setup.md §7 -> motor-off [TBD method]
+
+# ----------------------------------------------------------------------------
+# TELEMETRY
+# ----------------------------------------------------------------------------
+# Sensors are auto-discovered from the live ELRS link (Telemetry -> Discover).
+# No telemetry values are hard-coded. Expect RSSI/RQly/TPWR/RSNR (+RxBt if RX
+# reports it). [VERIFIED]
+telemetry:
+  source: 0                  # RSSI source auto after discovery
+
+# =============================================================================
+# END — Remember: resolve EVERY "TBD - Verification Required" before flight.
+# =============================================================================

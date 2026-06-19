@@ -1,0 +1,64 @@
+# =============================================================================
+# GOOSKY_S1_V3_PRO.otx  —  EdgeTX Companion model descriptor (TEMPLATE)
+# =============================================================================
+#
+# HONEST FORMAT NOTE — PLEASE READ
+# --------------------------------
+# A genuine binary EdgeTX/OpenTX ".otx" (Companion radio/model container) is a
+# packed binary and CANNOT be authored reliably by hand offline. Rather than
+# ship a fake/corrupt binary, this file is provided as a HUMAN-READABLE model
+# descriptor that mirrors the authoritative model definition.
+#
+# AUTHORITATIVE, IMPORTABLE FILE:
+#     /models/GOOSKY_S1_V3_PRO_ELRS.yml   (EdgeTX on-radio model YAML)
+#
+# HOW TO USE THIS MODEL
+#   Option A (recommended): Open EdgeTX Companion 2.10+, create/import the model
+#     from GOOSKY_S1_V3_PRO_ELRS.yml, review EVERY page, then write to the radio
+#     and "Save As..." a real .otx/.etx from Companion if you want a binary copy.
+#   Option B: On the radio's SD card, copy GOOSKY_S1_V3_PRO_ELRS.yml into /MODELS
+#     as the next modelNN.yml and add it to MODELS.TXT (see /sdcard-layout).
+#
+#  ⚠️  TEMPLATE — NOT FLIGHT-VALIDATED. Every flight-critical value is a
+#      placeholder marked "TBD - Verification Required". Resolve them all from
+#      the official GooSky manual + GOOSKY app and BENCH-TEST (blades off)
+#      before flying. See /docs/safety-checklist.md.
+#
+# =============================================================================
+# MODEL OVERVIEW (mirror of the .yml — see that file for exact mix logic)
+# =============================================================================
+Model name ........ GOOSKY S1
+Radio ............. RadioMaster TX15 Max (EdgeTX 3.0.0+), Mode 2
+RF ................ Internal ExpressLRS (CRSF), 8ch full-resolution, 333 Hz
+Bitmap ............ GOOSKY.bmp (purple)
+Swash type ........ NONE  (flybarless GTS mixes its own swash) [VERIFIED principle]
+Channel order ..... AETR + CH5 stability + CH6 collective [REPORTED — verify]
+
+Channels
+  CH1  Aileron .................................... [REPORTED]
+  CH2  Elevator ........... reverse? ............... TBD - Verification Required
+  CH3  Throttle -> head speed (per-mode curves) .... curve values TBD
+  CH4  Rudder ...................................... [REPORTED]
+  CH5  Stability/POSE (Self-level <-> 3D) .......... value TBD (on SB)
+  CH6  Collective pitch (per-mode curves) .......... curve values TBD
+
+Flight modes (TX-side, switch SA)
+  EASY  self-level + low head-speed + gentle rates
+  MILD  self-level + higher head-speed
+  WILD  3D + full head-speed + full pitch
+  (The GTS itself exposes only Self-level/3D on CH5 — see /docs/flight-modes.md)
+
+Safety
+  Throttle Hold ..... SF (default HOLD), throttle-state warning at power-on
+  Failsafe .......... motor-off on link loss — method TBD (see /docs/elrs-setup.md)
+  Lua tool .......... read-only; never arms or changes flight-critical settings
+
+Timers
+  T1 FLIGHT ......... throttle-run countdown; alarm 4:30 PLACEHOLDER (TBD)
+  T2 PWRON .......... optional power-on timer
+
+# =============================================================================
+# For the precise inputs/mixes/curves/special-functions, see:
+#     /models/GOOSKY_S1_V3_PRO_ELRS.yml
+#     /docs/goosky-s1-v3-pro-edgetx-profile.md
+# =============================================================================
